@@ -1,0 +1,13 @@
+name = Opigno Breadcrumbs
+description = API for providing useful and intuitive breadcrumbs when in a course context.
+core = 7.x
+package = Opigno
+dependencies[] = opigno
+dependencies[] = og_context
+
+; Information added by Drupal.org packaging script on 2017-07-14
+version = "7.x-1.18"
+core = "7.x"
+project = "opigno"
+datestamp = "1500023348"
+

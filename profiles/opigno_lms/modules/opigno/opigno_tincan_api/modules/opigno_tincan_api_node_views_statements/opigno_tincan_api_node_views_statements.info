@@ -1,0 +1,14 @@
+name = Opigno TinCan API / Node views addon
+description = Add node viewing statements
+package = Opigno
+core = 7.x
+
+dependencies[] = opigno_tincan_api
+dependencies[] = node
+
+; Information added by Drupal.org packaging script on 2017-07-14
+version = "7.x-1.2"
+core = "7.x"
+project = "opigno_tincan_api"
+datestamp = "1500031745"
+
