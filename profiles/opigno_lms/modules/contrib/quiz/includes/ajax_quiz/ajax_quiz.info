@@ -7,9 +7,9 @@ package = Quiz Addon
 files[] = ajax_quiz.admin.inc
 files[] = ajax_quiz.module
 
-; Information added by Drupal.org packaging script on 2017-06-29
-version = "7.x-4.0-rc8"
+; Information added by Drupal.org packaging script on 2018-02-06
+version = "7.x-4.0-rc9"
 core = "7.x"
 project = "quiz"
-datestamp = "1498728262"
+datestamp = "1517908099"
 

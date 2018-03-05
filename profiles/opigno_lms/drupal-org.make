@@ -1,12 +1,12 @@
 api = 2
-core = 7.56
+core = 7.57
 
 
 ; Opigno modules ===============================================================
 
 projects[opigno][type]               = module
 projects[opigno][subdir]             = "opigno"
-projects[opigno][version]            = 1.18
+projects[opigno][version]            = 1.19
 
 projects[opigno_calendar_app][type]    = module
 projects[opigno_calendar_app][subdir]  = "opigno"
@@ -22,7 +22,7 @@ projects[opigno_forum_app][version]            = 1.1
 
 projects[opigno_messaging_app][type]               = module
 projects[opigno_messaging_app][subdir]             = "opigno"
-projects[opigno_messaging_app][version]            = 1.0
+projects[opigno_messaging_app][version]            = 1.1
 
 projects[opigno_notifications_app][type]               = module
 projects[opigno_notifications_app][subdir]             = "opigno"
@@ -42,7 +42,7 @@ projects[opigno_class_app][version]            = 1.6
 
 projects[opigno_quiz_app][type]               = module
 projects[opigno_quiz_app][subdir]             = "opigno"
-projects[opigno_quiz_app][version]            = 1.16
+projects[opigno_quiz_app][version]            = 1.17
 
 projects[opigno_wt_app][type]               = module
 projects[opigno_wt_app][subdir]             = "opigno"
@@ -62,15 +62,15 @@ projects[opigno_statistics_app][version]            = 1.4
 
 projects[opigno_moxtra_app][type]               = module
 projects[opigno_moxtra_app][subdir]             = "opigno"
-projects[opigno_moxtra_app][version]            = 1.3
+projects[opigno_moxtra_app][version]            = 1.4
 
 projects[opigno_tincan_api][type]     = module
 projects[opigno_tincan_api][subdir]   = "opigno"
-projects[opigno_tincan_api][version]  = 1.2
+projects[opigno_tincan_api][version]  = 1.3
 
 projects[opigno_tincan_question_type][type]     = module
 projects[opigno_tincan_question_type][subdir]   = "opigno"
-projects[opigno_tincan_question_type][version]  = 1.1
+projects[opigno_tincan_question_type][version]  = 1.2
 
 projects[og_quiz][type]               = module
 projects[og_quiz][subdir]             = "contrib"
@@ -79,12 +79,12 @@ projects[og_quiz][version]            = 1.5
 ; Opigno themes ================================================================
 
 projects[platon][type]               = theme
-projects[platon][version]            = 3.18
+projects[platon][version]            = 3.19
 
 ; Third-party modules that need to be patched ==================================
 
 ; Quiz
-projects[quiz][version]        = 4.0-rc8
+projects[quiz][version]        = 4.0-rc9
 projects[quiz][subdir]         = "contrib"
 projects[quiz][patch][937430]  = "http://drupal.org/files/add_plural_quiz_name-937430-8.patch"
 projects[quiz][patch][2101063] = "http://drupal.org/files/issues/quiz_modify-quiz-to-lesson-in-ui-strings-2101063_4.patch"
@@ -154,19 +154,19 @@ projects[r4032login][patch][2362997] = "http://drupal.org/files/issues/r4032logi
 ; Third-party modules ==========================================================
 
 projects[login_history][subdir]  = "contrib"
-projects[login_history][version] = 1.0
+projects[login_history][version] = 1.1
 
 projects[quizfileupload][subdir]   = "contrib"
 projects[quizfileupload][version]  = 4.1
 
 projects[l10n_update][subdir]  = "contrib"
-projects[l10n_update][version] = 2.1
+projects[l10n_update][version] = 2.2
 
 projects[date][subdir]  = "contrib"
 projects[date][version] = 2.10
 
 projects[i18n][subdir]  = "contrib"
-projects[i18n][version] = 1.18
+projects[i18n][version] = 1.22
 
 projects[certificate][subdir]  = "contrib"
 projects[certificate][version] = 2.3
@@ -175,16 +175,16 @@ projects[calendar][subdir]  = "contrib"
 projects[calendar][version] = 3.5
 
 projects[h5p][subdir] = "contrib"
-projects[h5p][version] = 1.32
+projects[h5p][version] = 1.34
 
 projects[admin_menu][subdir] = "contrib"
 projects[admin_menu][version] = 3.0-rc5
 
 projects[ctools][subdir] = "contrib"
-projects[ctools][version] = 1.12
+projects[ctools][version] = 1.13
 
 projects[views][subdir] = "contrib"
-projects[views][version] = 3.17
+projects[views][version] = 3.18
 
 projects[views_php][subdir] = "contrib"
 projects[views_php][version] = 1.0-alpha3
@@ -196,7 +196,7 @@ projects[module_filter][subdir]  = "contrib"
 projects[module_filter][version] = 2.1
 
 projects[entity][subdir]  = "contrib"
-projects[entity][version] = 1.8
+projects[entity][version] = 1.9
 
 projects[entityreference][subdir]  = "contrib"
 projects[entityreference][version] = 1.5
@@ -208,10 +208,10 @@ projects[token][subdir]  = "contrib"
 projects[token][version] = 1.7
 
 projects[multiselect][subdir]  = "contrib"
-projects[multiselect][version] = 1.12
+projects[multiselect][version] = 1.13
 
 projects[crumbs][subdir]  = "contrib"
-projects[crumbs][version] = 2.5
+projects[crumbs][version] = 2.6
 
 projects[variable][subdir]  = "contrib"
 projects[variable][version] = 2.5
@@ -229,7 +229,7 @@ projects[wysiwyg][subdir]  = "contrib"
 projects[wysiwyg][version] = 2.4
 
 projects[wysiwyg_filter][subdir]  = "contrib"
-projects[wysiwyg_filter][version] = 1.6-rc3
+projects[wysiwyg_filter][version] = 1.6-rc9
 
 projects[imce][subdir]  = "contrib"
 projects[imce][version] = 1.11
@@ -238,7 +238,7 @@ projects[imce_wysiwyg][subdir]  = "contrib"
 projects[imce_wysiwyg][version] = 1.0
 
 projects[field_group][subdir]  = "contrib"
-projects[field_group][version] = 1.5
+projects[field_group][version] = 1.6
 
 projects[menu_attributes][subdir]  = "contrib"
 projects[menu_attributes][version] = 1.0
@@ -280,18 +280,16 @@ projects[content_access][subdir]  = "contrib"
 projects[content_access][version] = 1.2-beta2
 
 projects[better_exposed_filters][subdir] = "contrib"
-projects[better_exposed_filters][version] = 3.4
+projects[better_exposed_filters][version] = 3.5
 
 projects[pdf][subdir]  = "contrib"
-projects[pdf][version] = 1.8
+projects[pdf][version] = 1.9
 
 projects[wysiwyg_template][subdir]  = "contrib"
 projects[wysiwyg_template][version] = 2.12
 
 projects[homebox][subdir]  = "contrib"
-projects[homebox][version] = 2.0-rc3
-projects[homebox][patch][2771029] = "http://drupal.org/files/issues/2771029-revert-array-syntax-to-d7-compatible.patch"
-projects[homebox][patch][2790005] = "http://drupal.org/files/issues/2790005-homebox-title-8.patch"
+projects[homebox][version] = 2.0
 
 ; Third-patry libraries ========================================================
 

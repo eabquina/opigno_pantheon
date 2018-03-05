@@ -3,7 +3,6 @@
 module_load_include('inc', 'opigno_collaborative_workspaces', 'includes/opigno_collaborative_workspaces.api');
 module_load_include('inc', 'opigno_collaborative_workspaces', 'includes/opigno_collaborative_workspaces.node_form');
 module_load_include('inc', 'opigno_collaborative_workspaces', 'includes/opigno_collaborative_workspaces.db_queries');
-module_load_include('inc', 'opigno_collaborative_workspaces', 'includes/opigno_collaborative_workspaces.admin_form');
 
 /**
  * Implements hook_menu_local_tasks_alter().
@@ -77,9 +76,18 @@ function opigno_collaborative_workspaces_node_access($node, $op, $account)
     // Finally, check if he is a participant. Grant access if he is.
     $is_participant = false;
 
-    foreach ($node->field_users_invited[LANGUAGE_NONE] as $user_invited)
-      if ($user_invited['target_id'] == $account->uid)
-        return NODE_ACCESS_ALLOW;
+    foreach ($node->field_users_invited[LANGUAGE_NONE] as $user_invited) {
+      if ($user_invited['target_id'] == $account->uid) {
+        if ($op == 'view') {
+          return NODE_ACCESS_ALLOW;
+        }
+        else {
+          if ($account->uid == $node->uid) {
+            return NODE_ACCESS_ALLOW;
+          }
+        }
+      }
+    }
 
     if ($is_participant == false)
       return NODE_ACCESS_DENY;
@@ -91,8 +99,7 @@ function opigno_collaborative_workspaces_node_access($node, $op, $account)
 /**
  * Implements hook_permission().
  */
-function opigno_collaborative_workspaces_permission()
-{
+function opigno_collaborative_workspaces_permission() {
   return array(
     'view all collaborative_workspace' => array(
       'title' => t('View all Collaborative Workspaces'),
@@ -101,6 +108,10 @@ function opigno_collaborative_workspaces_permission()
     'view participants collaborative_workspace' => array(
       'title' => t('View the participant\'s Collaborative Workspaces'),
       'description' => t('Allows the user to access the Collaborative Workspaces where he is participant')
+    ),
+    'invite all users to collaborative_workspace' => array(
+      'title' => t('Invite all users to the collaborative workspace'),
+      'description' => t('Allows the user to be able to invite all users to the collaborative workspace')
     )
   );
 }

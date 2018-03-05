@@ -57,6 +57,38 @@ function opigno_lrs_stats_query_scope_finished_statements($pipeline) {
 }
 
 /**
+ * Scope pipeline to retrieve only passed statements
+ *
+ * @param $pipeline
+ *   A structured pipeline array.
+ *
+ * @return array
+ *   A structured pipeline array.
+ */
+function opigno_lrs_stats_query_scope_passed_statements($pipeline) {
+  $verb = OpignoTincanApiTinCanVerbs::$passed;
+  return opigno_lrs_stats_query_match($pipeline, array(
+    'statement.verb.id' => $verb['id']
+  ));
+}
+
+/**
+ * Scope pipeline to retrieve only passed statements
+ *
+ * @param $pipeline
+ *   A structured pipeline array.
+ *
+ * @return array
+ *   A structured pipeline array.
+ */
+function opigno_lrs_stats_query_scope_failed_statements($pipeline) {
+  $verb = OpignoTincanApiTinCanVerbs::$failed;
+  return opigno_lrs_stats_query_match($pipeline, array(
+    'statement.verb.id' => $verb['id']
+  ));
+}
+
+/**
  * Scope pipeline to retrieve only answered statements
  *
  * @param $pipeline

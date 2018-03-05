@@ -672,6 +672,27 @@ function opigno_quiz_app_update_7102($sandbox) {
 }
 
 /**
+ * Updating permissions
+ */
+function opigno_quiz_app_update_7103($sandbox) {
+  // All users should be able to view their own results / Achievements page
+  $permission = array('access own results');
+  $role_name = 'authenticated user';
+  $role = user_role_load_by_name($role_name);
+  if ($role->rid) {
+    user_role_grant_permissions($role->rid, $permission);
+  }
+
+  // Admin users should be able to see all user results / Achievements page
+  $permission = array('access all results');
+  $role_name = 'administrator';
+  $role = user_role_load_by_name($role_name);
+  if ($role->rid) {
+    user_role_grant_permissions($role->rid, $permission);
+  }
+}
+
+/**
  * Put in this function all the strings that are not in a t() or st() function.
  */
 function opigno_quiz_app_install_translations() {

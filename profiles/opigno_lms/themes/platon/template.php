@@ -361,7 +361,8 @@ function platon_preprocess_page(&$vars) {
 
           $value = check_markup($markupValue, $markupFormat);
           if (!empty($value)) {
-            $html .= '<li style="background-image: url(\'' . base_path() . 'sites/default/files/' . $markupBackground . '\');"><div class="content"><div class="inner-content">' . $value . '</div></div></li>';
+            $background_url = file_create_url('public://'. $markupBackground);
+            $html .= "<li style=\"background-image: url('" . $background_url . "');\"><div class=\"content\"><div class=\"inner-content\">" . $value . '</div></div></li>';
           }
         }
       }
@@ -446,7 +447,7 @@ function platon_render_group_state($var)
     foreach ($var['course'] as $index => $tool) {
         $html .= '<div class="opigno-group-progress-course">';
         $course = node_load($index);
-        $html .= l(check_plain($course->title), 'node/'.$course->nid);
+        $html .= l($course->title, 'node/'.$course->nid);
         if (isset($tool['quiz'])) {
             $empty = false;
             $html .= '<div class="opigno-group-progress-course-quiz">';
@@ -872,9 +873,7 @@ function _platon_get_css_override_file_content() {
  */
 function _platon_inject_css_override() {
   if ($file = _platon_get_css_override_file()) {
-    $realpath = drupal_realpath($file->uri);
-    $path = str_replace(realpath($_SERVER['DOCUMENT_ROOT']).'/','',$realpath);
-    drupal_add_css($path, array('group' => CSS_THEME));
+    drupal_add_css($file->uri, array('group' => CSS_THEME));
   }
 }
 

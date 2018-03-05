@@ -238,6 +238,7 @@ function opigno_collaborative_workspaces_install_default_permissions()
     'edit any collaborative_workspace content',
     'view participants collaborative_workspace',
     'view all collaborative_workspace',
+    'invite all users to collaborative_workspace',
   );
   user_role_grant_permissions($administrator->rid, $administrator_permissions);
 

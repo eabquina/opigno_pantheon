@@ -33,9 +33,9 @@ dependencies[] = entityreference
 dependencies[] = rules
 dependencies[] = rules_conditional
 
-; Information added by Drupal.org packaging script on 2017-07-14
-version = "7.x-1.16"
+; Information added by Drupal.org packaging script on 2018-02-09
+version = "7.x-1.17"
 core = "7.x"
 project = "opigno_quiz_app"
-datestamp = "1500027845"
+datestamp = "1518183788"
 

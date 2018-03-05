@@ -18,7 +18,7 @@ define('OPIGNO_LMS_STUDENT_MANAGER_ROLE',     'student manager');
 define('OPIGNO_LMS_ADMIN_ROLE',               'administrator');
 define('OPIGNO_LMS_FORUM_ADMINISTRATOR_ROLE', 'forum administrator');
 
-define('OPIGNO_LMS_VERSION', '1.27.0');
+define('OPIGNO_LMS_VERSION', '1.29.0');
 
 /**
  * Implements hook_init().cd .drush
@@ -295,8 +295,9 @@ function opigno_lms_form_install_configure_form_alter(&$form, $form_state) {
  * Submit callback for opigno_lms_form_install_configure_form_alter().
  */
 function opigno_lms_form_install_configure_form_alter_submit($form, $form_state) {
+  //H5P libraries are now added during the creation of content, no longer makes sense
   // Installs H5P Libraries
-  $path = file_get_contents(drupal_get_path("profile","opigno_lms")."/h5plib/libraries.h5p");
+  /*$path = file_get_contents(drupal_get_path("profile","opigno_lms")."/h5plib/libraries.h5p");
   $temporary_file_path = 'public://' . variable_get('h5p_default_path', 'h5p') . '/temp/' . uniqid('h5p-');
   $prepare=file_prepare_directory($temporary_file_path, FILE_CREATE_DIRECTORY);
   $temporary_file_name=$temporary_file_path."/libraries.h5p";
@@ -307,7 +308,7 @@ function opigno_lms_form_install_configure_form_alter_submit($form, $form_state)
   $isvalid=$validator->isValidPackage(TRUE, FALSE);
   $h5p_core = _h5p_get_instance('storage');
   $save_package=$h5p_core->savePackage(NULL, NULL, TRUE);
-  unset($_SESSION['h5p_upload'], $_SESSION['h5p_upload_folder']);
+  unset($_SESSION['h5p_upload'], $_SESSION['h5p_upload_folder']);*/
   /////////////////////////////////////////////////////////////////////
 }
 

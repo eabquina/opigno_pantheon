@@ -8,9 +8,9 @@ dependencies[] = opigno_collaborative_workspaces
 dependencies[] = opigno_calendar_app
 dependencies[] = date_repeat_field
 
-; Information added by Drupal.org packaging script on 2017-07-14
-version = "7.x-1.3"
+; Information added by Drupal.org packaging script on 2018-02-09
+version = "7.x-1.4"
 core = "7.x"
 project = "opigno_moxtra_app"
-datestamp = "1500031463"
+datestamp = "1518184084"
 

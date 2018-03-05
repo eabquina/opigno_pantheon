@@ -58,7 +58,9 @@ function opigno_lrs_stats_course_content_total_number_of_activities($statement_f
 function opigno_lrs_stats_course_content_avg_score($statement_filter_function = NULL)
 {
   $total_score = 0;
-  $finished_statements = isset($statement_filter_function)? $statement_filter_function(opigno_lrs_stats_all_course_content_finished_statements()) : opigno_lrs_stats_all_course_content_finished_statements();
+  $passed_statements = isset($statement_filter_function)? $statement_filter_function(opigno_lrs_stats_all_course_content_passed_statements()) : opigno_lrs_stats_all_course_content_passed_statements();
+  $failed_statements = isset($statement_filter_function)? $statement_filter_function(opigno_lrs_stats_all_course_content_failed_statements()) : opigno_lrs_stats_all_course_content_failed_statements();
+  $finished_statements = array_merge($passed_statements, $failed_statements);
   $finished_statements_with_score = opigno_lrs_stats_filter_finished_statements_with_score($finished_statements);
   $total_score += array_sum(opigno_lrs_stats_map_finished_statement_scores($finished_statements_with_score));
   $number_of_score = count($finished_statements);

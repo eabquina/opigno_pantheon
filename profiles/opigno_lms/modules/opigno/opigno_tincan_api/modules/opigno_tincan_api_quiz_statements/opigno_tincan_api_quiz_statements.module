@@ -107,7 +107,7 @@ function _opigno_tincan_api_send_quiz_results($quiz, $score, $rid)
       return $e['target_id'];
     }, $quiz->og_group_ref[LANGUAGE_NONE]);
 
-    _opigno_tincan_api_context_set_parents($context, $parent_courses_nids);
+    _opigno_tincan_api_context_set_parents($context, $parent_courses_nids, OpignoTincanApiTinCanActivityDefinitionTypes::$course);
   }
 
   _opigno_tincan_api_context_set_language($context, $quiz->language);
@@ -173,7 +173,7 @@ function _opigno_tincan_api_send_questions_results($quiz, $rid)
 
     _opigno_tincan_api_context_set_language($context, $question->language);
     _opigno_tincan_api_context_set_parents($context, _opigno_tincan_api_get_parent_quiz($question));
-    _opigno_tincan_api_context_set_grouping($context, $courses_nids);
+    _opigno_tincan_api_context_set_grouping($context, $courses_nids, OpignoTincanApiTinCanActivityDefinitionTypes::$course);
 
     $statement->setContext($context);
 

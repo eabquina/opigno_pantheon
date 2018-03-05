@@ -123,7 +123,7 @@ function opigno_collaborative_workspaces_form_field_invited_users_update_callbac
 
   if (is_numeric($form['field_classes_courses']['#value']))
     $users_ids = opigno_collaborative_workspaces_db_get_users_ids_from_group($form['field_classes_courses']['#value']);
-  else if ($user->uid === '1') // Admin can see every users
+  else if (user_access('invite all users to collaborative_workspace')) // Admin can see every users
     $users_ids = db_select('users', 'u')->fields('u', array('uid'))->execute()->fetchCol();
   else
     $users_ids = opigno_collaborative_workspaces_db_get_users_ids_from_groups(array_keys($form['all_user_courses_classes']['#value']));

@@ -18,14 +18,15 @@ function opigno_quiz_app_menu() {
       'title' => "My achievements",
       'page callback' => 'opigno_quiz_app_user_results',
       'page arguments' => array(1),
-      'access arguments' => array('access student results'),
+      'access callback' => 'opigno_quiz_app_access_user_achievements',
+      'access arguments' => array(1),
       'file' => 'includes/opigno_quiz_app.pages.inc',
       'type' => MENU_LOCAL_TASK,
     ),
     'my-achievements' => array(
       'title' => "My achievements",
       'page callback' => 'opigno_quiz_app_user_results',
-      'access arguments' => array('access student results'),
+      'access arguments' => array('access own results'),
       'file' => 'includes/opigno_quiz_app.pages.inc',
       'type' => MENU_CALLBACK,
     ),
@@ -295,14 +296,33 @@ function opigno_quiz_app_menu_alter(&$items) {
  */
 function opigno_quiz_app_permission() {
   return array(
-    'access student results' => array(
-      'title' => t("Access student results"),
+    'access all results' => array(
+      'title' => t("Access all user results"),
+    ),
+    'access own results' => array(
+      'title' => t("Access own results"),
     ),
     'access teacher results' => array(
       'title' => t('Access teacher results'),
       'description' => t('Allows course teachers to access all their student results.'),
     ),
   );
+}
+
+/**
+ * Custom user access to the users achievements page
+ */
+function opigno_quiz_app_access_user_achievements($uid) {
+  Global $user;
+  if ($user->uid) {
+    if (user_access('access all results')) {
+      return TRUE;
+    }
+    elseif (($user->uid == $uid) && (user_access('access own results'))) {
+      return TRUE;
+    }
+  }
+  return FALSE;
 }
 
 /**

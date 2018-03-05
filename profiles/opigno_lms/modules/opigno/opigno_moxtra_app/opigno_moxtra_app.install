@@ -39,3 +39,20 @@ function opigno_moxtra_app_install_default_permissions() {
     user_role_grant_permissions($administrator->rid, $administrator_permissions);
   }
 }
+
+/**
+ * Check/set the status of the moxtra plan
+ */
+function opigno_moxtra_app_update_7101() {
+  $organization = variable_get('opigno_moxtra_app_org_id', NULL);
+  if ((!empty($organization))) {
+    $info = opigno_moxtra_app_api_opigno_get_organization_info();
+    if (!isset($info->opigno_error_message)) {
+      if ($info->active) {
+        variable_set('opigno_moxtra_app_status', 1);
+        return;
+      }
+    }
+  }
+  variable_set('opigno_moxtra_app_status', 0);
+}

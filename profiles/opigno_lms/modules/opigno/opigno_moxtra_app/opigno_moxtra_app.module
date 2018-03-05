@@ -8,6 +8,7 @@ module_load_include('inc', 'opigno_moxtra_app', 'includes/opigno_moxtra_app.cons
 module_load_include('inc', 'opigno_moxtra_app', 'includes/opigno_moxtra_app.http_client');
 module_load_include('inc', 'opigno_moxtra_app', 'includes/opigno_moxtra_app.api');
 module_load_include('inc', 'opigno_moxtra_app', 'includes/opigno_moxtra_app.api_opigno');
+module_load_include('inc', 'opigno_moxtra_app', 'includes/opigno_moxtra_app.cron');
 
 /**
  * Implements hook_menu().
@@ -67,7 +68,7 @@ function opigno_moxtra_app_theme($existing, $type, $theme, $path) {
  */
 function opigno_moxtra_app_user_insert(&$edit, $account, $category) {
   $organization = variable_get('opigno_moxtra_app_org_id', NULL);
-  if (!empty($organization)) {
+  if ((!empty($organization)) && (opigno_moxtra_app_organization_is_active())) {
     if ($account->status == 1) {
       $response = opigno_moxtra_app_api_opigno_create_users(array(
         array('uid' => $account->uid, 'name' => $account->name, 'timezone' => $account->timezone)
@@ -87,7 +88,7 @@ function opigno_moxtra_app_user_insert(&$edit, $account, $category) {
  */
 function opigno_moxtra_app_user_update(&$edit, $account, $category) {
   $organization = variable_get('opigno_moxtra_app_org_id', NULL);
-  if (!empty($organization)) {
+  if ((!empty($organization)) && (opigno_moxtra_app_organization_is_active())) {
     if ($account->status == 1) {
       $response = opigno_moxtra_app_api_opigno_update_user(
         array('uid' => $account->uid, 'name' => $account->name, 'timezone' => $account->timezone)
@@ -134,7 +135,7 @@ function opigno_moxtra_app_user_update(&$edit, $account, $category) {
  */
 function opigno_moxtra_app_user_delete($account) {
   $organization = variable_get('opigno_moxtra_app_org_id', NULL);
-  if (!empty($organization)) {
+  if ((!empty($organization)) && (opigno_moxtra_app_organization_is_active())) {
     $response = opigno_moxtra_app_api_opigno_disable_user($account->uid);
 
     if (isset($response->opigno_error_message)) {
@@ -144,16 +145,14 @@ function opigno_moxtra_app_user_delete($account) {
   }
 }
 
-
 /**
  * Update the site name and admin mail address on moxtra servers
  */
-function opigno_moxtra_app_form_system_site_information_settings_alter(&$form, &$form_state, $form_id)
-{
+function opigno_moxtra_app_form_system_site_information_settings_alter(&$form, &$form_state, $form_id) {
   // Last validation. So
   $organization = variable_get('opigno_moxtra_app_org_id', NULL);
-  if (!empty($organization)) {
-  array_push($form['#validate'], 'opigno_moxtra_app_form_system_site_information_settings_validate');
+  if ((!empty($organization)) && (opigno_moxtra_app_organization_is_active())) {
+    array_push($form['#validate'], 'opigno_moxtra_app_form_system_site_information_settings_validate');
   }
 }
 
@@ -165,4 +164,11 @@ function opigno_moxtra_app_form_system_site_information_settings_validate($form,
     if (isset($response->opigno_error_message))
       form_set_error('', $response->opigno_error_message);
   }
+}
+
+/**
+ * Check if the organization is active
+ */
+function opigno_moxtra_app_organization_is_active() {
+  return variable_get('opigno_moxtra_app_status', 0);
 }

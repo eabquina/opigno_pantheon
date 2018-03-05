@@ -14,9 +14,9 @@ features[features_api][] = api:2
 features[field_group][] = group_course_settings|node|course|form
 features[variable][] = field_bundle_settings_node__course
 
-; Information added by Drupal.org packaging script on 2017-09-04
-version = "7.x-1.27"
+; Information added by Drupal.org packaging script on 2018-02-22
+version = "7.x-1.29"
 core = "7.x"
 project = "opigno_lms"
-datestamp = "1504532795"
+datestamp = "1519315392"
 

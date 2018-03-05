@@ -32,9 +32,9 @@ files[] = includes/views/handlers/quiz_views_handler_filter_user_nullable.inc
 files[] = includes/views/handlers/quiz_views_handler_filter_user_quiz_state.inc
 files[] = includes/views/handlers/quiz_views_handler_relationship_quiz_nid.inc
 
-; Information added by Drupal.org packaging script on 2017-06-29
-version = "7.x-4.0-rc8"
+; Information added by Drupal.org packaging script on 2018-02-06
+version = "7.x-4.0-rc9"
 core = "7.x"
 project = "quiz"
-datestamp = "1498728262"
+datestamp = "1517908099"
 

@@ -180,11 +180,20 @@ function opigno_features_roles_user_default_permissions() {
     'module' => 'system',
   );
 
-  // Exported permission: 'access student results'.
-  $permissions['access student results'] = array(
-    'name' => 'access student results',
+  // Exported permission: 'access own results'.
+  $permissions['access own results'] = array(
+    'name' => 'access own results',
     'roles' => array(
       'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'opigno_quiz_app',
+  );
+
+  // Exported permission: 'access all results'.
+  $permissions['access all results'] = array(
+    'name' => 'access all results',
+    'roles' => array(
+      'administrator' => 'administrator',
     ),
     'module' => 'opigno_quiz_app',
   );
@@ -1604,6 +1613,15 @@ function opigno_features_roles_user_default_permissions() {
   // Exported permission: 'message all groups'.
   $permissions['message all groups'] = array(
     'name' => 'message all groups',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'opigno_messaging_app',
+  );
+
+  // Exported permission: 'message anyone regardless of groups'.
+  $permissions['message anyone regardless of groups'] = array(
+    'name' => 'message anyone regardless of groups',
     'roles' => array(
       'administrator' => 'administrator',
     ),

@@ -82,8 +82,28 @@ function opigno_lms_install() {
   // Enable specific content type permissions for anonymous_users
   _opigno_lms_install_specific_content_access();
 
+  // Enable image styles
+  _opigno_lms_install_enable_image_styles();
+
   // Rebuild permissions. Don't use the batch process, we're already in one.
   node_access_rebuild(FALSE);
+}
+
+/**
+ * Helper function to enable Image styles.
+ */
+function _opigno_lms_install_enable_image_styles() {
+  // Add image style for user thumbnail
+  $style = image_style_save(array('name' => 'user_thumbnail'));
+  $effect = array(
+    'name' => 'image_scale_and_crop',
+    'data' => array(
+      'width' => 255,
+      'height' => 255,
+    ),
+    'isid' => $style['isid'],
+  );
+  image_effect_save($effect);
 }
 
 /**

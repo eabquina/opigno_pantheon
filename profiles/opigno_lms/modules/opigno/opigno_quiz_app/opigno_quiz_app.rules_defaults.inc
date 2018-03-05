@@ -164,48 +164,57 @@ function opigno_quiz_app_default_rules_configuration() {
     }
   }');
   $items['rules_user_has_passed_all_required_quizzes'] = entity_import('rules_config', '{ "rules_user_has_passed_all_required_quizzes" : {
-      "LABEL" : "User has passed all required quizzes",
-      "PLUGIN" : "rule condition set",
-      "TAGS" : [ "og", "opigno", "quiz", "opigno_quiz_app" ],
-      "REQUIRES" : [ "rules_conditional", "rules", "opigno_quiz_app" ],
-      "USES VARIABLES" : {
-        "course" : { "label" : "Course", "type" : "node" },
-        "user" : { "label" : "User", "type" : "user" },
-        "passed_all_required_quizzes" : {
-          "label" : "Has passed all required quizzes",
-          "type" : "boolean",
-          "parameter" : false
+    "LABEL" : "User has passed all required quizzes",
+    "PLUGIN" : "rule condition set",
+    "OWNER" : "rules",
+    "TAGS" : [ "og", "opigno", "opigno_quiz_app", "quiz" ],
+    "REQUIRES" : [ "rules_conditional", "rules", "opigno_quiz_app" ],
+    "USES VARIABLES" : {
+      "course" : { "label" : "Course", "type" : "node" },
+      "user" : { "label" : "User", "type" : "user" },
+      "passed_all_required_quizzes" : {
+        "label" : "Has passed all required quizzes",
+        "type" : "boolean",
+        "parameter" : false
+      }
+    },
+    "DO" : [
+      { "data_set" : { "data" : [ "passed-all-required-quizzes" ], "value" : 1 } },
+      { "component_rules_get_course_required_quizzes" : {
+          "USING" : { "course" : [ "course" ] },
+          "PROVIDE" : { "quizzes" : { "quizzes" : "Quizzes" } }
         }
       },
-      "DO" : [
-        { "data_set" : { "data" : [ "passed-all-required-quizzes" ], "value" : 1 } },
-        { "component_rules_get_course_required_quizzes" : {
-            "USING" : { "course" : [ "course" ] },
-            "PROVIDE" : { "quizzes" : { "quizzes" : "Quizzes" } }
-          }
-        },
-        { "LOOP" : {
-            "USING" : { "list" : [ "quizzes" ] },
-            "ITEM" : { "list_item" : "Current list item" },
+      { "CONDITIONAL" : [
+          {
+            "IF" : { "NOT data_is_empty" : { "data" : [ "quizzes" ] } },
             "DO" : [
-              { "CONDITIONAL" : [
-                  {
-                    "IF" : { "NOT opigno_quiz_app_rules_has_passed_quiz" : { "node" : [ "list-item" ], "user" : [ "user" ] } },
-                    "DO" : [
-                      { "data_set" : { "data" : [ "passed-all-required-quizzes" ], "value" : 0 } }
-                    ]
-                  }
-                ]
+              { "LOOP" : {
+                  "USING" : { "list" : [ "quizzes" ] },
+                  "ITEM" : { "list_item" : "Current list item" },
+                  "DO" : [
+                    { "CONDITIONAL" : [
+                        {
+                          "IF" : { "NOT opigno_quiz_app_rules_has_passed_quiz" : { "node" : [ "list-item" ], "user" : [ "user" ] } },
+                          "DO" : [
+                            { "data_set" : { "data" : [ "passed-all-required-quizzes" ], "value" : 0 } }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
               }
             ]
           }
-        }
-      ],
-      "RESULT" : [
-        { "data_is" : { "data" : [ "passed-all-required-quizzes" ], "value" : 1 } }
-      ]
-    }
-  }');
+        ]
+      }
+    ],
+    "RESULT" : [
+      { "data_is" : { "data" : [ "passed-all-required-quizzes" ], "value" : 1 } }
+    ]
+  }
+}');
   $items['rules_check_user_completed_course'] = entity_import('rules_config', '{ "rules_check_user_completed_course" : {
       "LABEL" : "Check user completed course",
       "PLUGIN" : "reaction rule",

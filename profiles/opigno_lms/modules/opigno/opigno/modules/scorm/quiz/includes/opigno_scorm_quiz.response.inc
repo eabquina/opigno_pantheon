@@ -18,15 +18,15 @@ class OpignoScormQuizResponse extends QuizQuestionResponse {
 
       // Get SCORM API version.
       $metadata = unserialize($scorm->metadata);
-      if (strpos($metadata['schemaversion'], '2004') !== FALSE) {
-        $scorm_version = '2004';
-        $completion_key = 'cmi.completion_status';
-        $raw_key = 'cmi.score.raw';
-      }
-      else {
+      if (strpos($metadata['schemaversion'], '1.2') !== FALSE) {
         $scorm_version = '1.2';
         $completion_key = 'cmi.core.lesson_status';
         $raw_key = 'cmi.core.score.raw';
+      }
+      else {
+        $scorm_version = '2004';
+        $completion_key = 'cmi.completion_status';
+        $raw_key = 'cmi.score.raw';
       }
 
       // We get the latest result. The way the SCORM API works always overwrites attempts

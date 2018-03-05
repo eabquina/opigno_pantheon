@@ -132,6 +132,46 @@ function opigno_lrs_stats_all_course_content_finished_statements() {
 }
 
 /**
+ * Retrieve all course content passed statements (caching for current request)
+ *
+ * @return array
+ */
+function opigno_lrs_stats_all_course_content_passed_statements() {
+  $course_content_passed_statements = &drupal_static(__FUNCTION__);
+  if(!isset($course_content_passed_statements))
+  {
+    $course_content_passed_statements = opigno_lrs_stats_query(
+      opigno_lrs_stats_query_scope_passed_statements(
+        opigno_lrs_stats_query_scope_unwind_context(
+          opigno_lrs_stats_query_new_pipeline()
+        )
+      )
+    );
+  }
+  return $course_content_passed_statements;
+}
+
+/**
+ * Retrieve all course content failed statements (caching for current request)
+ *
+ * @return array
+ */
+function opigno_lrs_stats_all_course_content_failed_statements() {
+  $course_content_passed_statements = &drupal_static(__FUNCTION__);
+  if(!isset($course_content_passed_statements))
+  {
+    $course_content_passed_statements = opigno_lrs_stats_query(
+      opigno_lrs_stats_query_scope_failed_statements(
+        opigno_lrs_stats_query_scope_unwind_context(
+          opigno_lrs_stats_query_new_pipeline()
+        )
+      )
+    );
+  }
+  return $course_content_passed_statements;
+}
+
+/**
  * Retrieve all statements related to a quiz
  *
  * @return array

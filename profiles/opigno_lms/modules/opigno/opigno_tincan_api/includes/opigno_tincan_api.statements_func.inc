@@ -106,30 +106,46 @@ function _opigno_tincan_api_context_set_language(TinCan\Context &$context, $lang
  * @param \TinCan\Context $context The context to add the parents
  * @param array() $parents_nids The nodes IDs to add as parents
  */
-function _opigno_tincan_api_context_set_parents(TinCan\Context &$context, $parents_nids)
+function _opigno_tincan_api_context_set_parents(TinCan\Context &$context, $parents_nids, $definition_type = NULL)
 {
   if (!_opigno_tincan_api_tincanphp_is_installed()) {
     return false;
   }
 
   $parents = array();
-  foreach ($parents_nids as $parent_nid)
-    $parents[] = array('id' => url('node/' . $parent_nid, array('absolute' => true)));
+  foreach ($parents_nids as $parent_nid) {
+    $parent = array();
+    $parent['id'] = url('node/' . $parent_nid, array('absolute' => true));
+
+    if (!empty($definition_type)) {
+      $parent['definition'] = array('type' => $definition_type);
+    }
+
+    $parents[] = $parent;
+  }
 
   if (!empty($parents))
     $context->getContextActivities()->setParent($parents);
 }
 
 
-function _opigno_tincan_api_context_set_grouping(TinCan\Context &$context, $grouping_nids)
+function _opigno_tincan_api_context_set_grouping(TinCan\Context &$context, $grouping_nids, $definition_type = NULL)
 {
   if (!_opigno_tincan_api_tincanphp_is_installed()) {
     return false;
   }
 
   $grouping = array();
-  foreach ($grouping_nids as $nid)
-    $grouping[] = array('id' => url('node/' . $nid, array('absolute' => true)));
+  foreach ($grouping_nids as $nid) {
+    $statement_group = array();
+    $statement_group['id'] = url('node/' . $nid, array('absolute' => true));
+
+    if (!empty($definition_type)) {
+      $statement_group['definition'] = array('type' => $definition_type);
+    }
+
+    $grouping[] = $statement_group;
+  }
 
   if (!empty($grouping))
     $context->getContextActivities()->setGrouping($grouping);

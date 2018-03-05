@@ -11,6 +11,10 @@ function opigno_messaging_app_permission() {
       'title' => t("Message to all groups"),
       'description' => t("Allows messaging all the groups"),
     ),
+    'message anyone regardless of groups' => array(
+      'title' => t("Message anyone regardless of groups"),
+      'description' => t("Allows the user to message anyone regardless of the groups"),
+    ),
   );
 }
 
@@ -107,7 +111,24 @@ function opigno_messaging_app_form_alter(&$form, &$form_state, $form_id) {
       );
     }
 
-    $users = _opigno_messaging_app_get_users_in_groups($groups, $user);
+    $needs_filtering = TRUE;
+    if ((isset($form_state['input']['groups'])) || ((!isset($form_state['input']['groups'])) && ($form['groups']['#default_value'] == t('All')))) {
+      if (user_access('message anyone regardless of groups')) {
+        $needs_filtering = FALSE;
+        $users = array();
+        $all_users = entity_load('user');
+        foreach ($all_users as $value) {
+          $user_list = (array) $value;
+          if ($user_list['uid'] != $user->uid) {
+            $users[$user_list['uid']] = $user_list['name'];
+          }
+        }
+      }
+    }
+    if ($needs_filtering) {
+      $users = _opigno_messaging_app_get_users_in_groups($groups, $user);
+    }
+    asort($users);
     foreach ($users as $account) {
       $form['recipient1']['#options'][$account] = $account;
     }
@@ -121,14 +142,28 @@ function messaging_user_update_callback($form, &$form_state) {
   $form['recipient1']['#options'] = NULL;
   $group = $form_state['input']['groups'];
   global $user;
+  $needs_filtering = TRUE;
   if ($group === t('All')) {
     $groups = _opigno_messaging_app_get_groups($user);
-    $users = _opigno_messaging_app_get_users_in_groups($groups, $user);
+    if (user_access('message anyone regardless of groups')) {
+      $needs_filtering = FALSE;
+      $users = array();
+      $all_users = entity_load('user');
+      foreach ($all_users as $value) {
+        $user_list = (array) $value;
+        if ($user_list['uid'] != $user->uid) {
+          $users[$user_list['uid']] = $user_list['name'];
+        }
+      }
+    }
   }
   else {
     $groups['node'][$group] = $group;
+  }
+  if ($needs_filtering) {
     $users = _opigno_messaging_app_get_users_in_groups($groups, $user);
   }
+  asort($users);
   foreach ($users as $userid => $username) {
     $form['recipient1']['#options'][$username] = $username;
   }

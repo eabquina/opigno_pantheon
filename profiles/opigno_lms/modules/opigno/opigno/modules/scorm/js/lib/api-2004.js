@@ -864,6 +864,8 @@
       'cmi.comments_from_learner.n.comment',
       'cmi.comments_from_learner.n.location',
       'cmi.comments_from_learner.n.timestamp',
+      'cmi.learner_id',
+      'cmi.learner_name',
       'cmi.learner_preference._children',
       'cmi.learner_preference.audio_level',
       'cmi.learner_preference.language',

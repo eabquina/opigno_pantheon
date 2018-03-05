@@ -7,9 +7,9 @@ dependencies[] = opigno_scorm
 
 files[] = tests/OpignoScormUIUnitTest.test
 
-; Information added by Drupal.org packaging script on 2017-07-14
-version = "7.x-1.18"
+; Information added by Drupal.org packaging script on 2018-02-09
+version = "7.x-1.19"
 core = "7.x"
 project = "opigno"
-datestamp = "1500023348"
+datestamp = "1518182893"
 

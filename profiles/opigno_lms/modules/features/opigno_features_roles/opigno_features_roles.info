@@ -75,7 +75,8 @@ features[user_permission][] = access quiz
 features[user_permission][] = access rules debug
 features[user_permission][] = access site in maintenance mode
 features[user_permission][] = access site reports
-features[user_permission][] = access student results
+features[user_permission][] = access own results
+features[user_permission][] = access all results
 features[user_permission][] = access teacher results
 features[user_permission][] = access user profiles
 features[user_permission][] = administer actions
@@ -233,6 +234,7 @@ features[user_permission][] = manage features
 features[user_permission][] = manual quiz revisioning
 features[user_permission][] = mass add and create users
 features[user_permission][] = message all groups
+features[user_permission][] = message anyone regardless of groups
 features[user_permission][] = notify everyone
 features[user_permission][] = notify of path changes
 features[user_permission][] = post comments
@@ -278,9 +280,9 @@ features[user_role][] = administrator
 features[user_role][] = forum administrator
 features[user_role][] = student manager
 
-; Information added by Drupal.org packaging script on 2017-09-04
-version = "7.x-1.27"
+; Information added by Drupal.org packaging script on 2018-02-22
+version = "7.x-1.29"
 core = "7.x"
 project = "opigno_lms"
-datestamp = "1504532795"
+datestamp = "1519315392"
 

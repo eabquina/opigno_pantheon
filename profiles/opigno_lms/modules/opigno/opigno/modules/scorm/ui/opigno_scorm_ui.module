@@ -200,6 +200,8 @@ function opigno_scorm_ui_opigno_scorm_ui_register_cmi_paths($scorm_version) {
         'cmi.location' => array(),
         'cmi.completion_status' => array(),
         'cmi.exit' => array(),
+        'cmi.learner_id' => array(),
+        'cmi.learner_name' => array(),
         'cmi.learner_preference._children' => array(),
         'cmi.learner_preference.audio_level' => array(),
         'cmi.learner_preference.language' => array(),
@@ -230,12 +232,21 @@ function opigno_scorm_ui_opigno_scorm_ui_register_cmi_paths($scorm_version) {
 function opigno_scorm_ui_opigno_scorm_ui_register_cmi_data($scorm, $scos, $scorm_version) {
   global $user;
 
+  if (!$user->uid) {
+     $learner_name = "anonymous";
+  }
+  else {
+     $learner_name = $user->name;
+  }
+
   switch ($scorm_version) {
     case '2004':
       $data = array(
-        'cmi.location' => opigno_scorm_ui_scorm_cmi_get($user->uid, $scorm->id, 'cmi.location', 0),
-        'cmi.completion_status' => opigno_scorm_ui_scorm_cmi_get($user->uid, $scorm->id, 'cmi.completion_status', ''),
+        'cmi.location' => opigno_scorm_ui_scorm_cmi_get($user->uid, $scorm->id, 'cmi.location', ''),
+        'cmi.completion_status' => opigno_scorm_ui_scorm_cmi_get($user->uid, $scorm->id, 'cmi.completion_status', 'unknown'),
         'cmi.exit' => opigno_scorm_ui_scorm_cmi_get($user->uid, $scorm->id, 'cmi.exit', ''),
+        'cmi.learner_id' => $user->uid,
+        'cmi.learner_name' => $learner_name,
         'cmi.learner_preference._children' => "audio_level,language,delivery_speed,audio_captioning",
         'cmi.learner_preference.audio_level' => 1,
         'cmi.learner_preference.language' => '',
@@ -246,7 +257,7 @@ function opigno_scorm_ui_opigno_scorm_ui_register_cmi_data($scorm, $scos, $scorm
 
     case '1.2':
       $data = array(
-        'cmi.core.lesson_location' => opigno_scorm_ui_scorm_cmi_get($user->uid, $scorm->id, 'cmi.core.lesson_location', 0),
+        'cmi.core.lesson_location' => opigno_scorm_ui_scorm_cmi_get($user->uid, $scorm->id, 'cmi.core.lesson_location', ''),
         'cmi.core.exit' => opigno_scorm_ui_scorm_cmi_get($user->uid, $scorm->id, 'cmi.core.exit', ''),
         'cmi.student_preference._children' => "audio,language,speed,text",
         'cmi.student_preference.audio' => array(),
@@ -298,7 +309,7 @@ function opigno_scorm_ui_opigno_scorm_ui_commit($scorm, $sco_id, $data) {
         }
 
         // Store suspend data value.
-        if (!empty($data->cmi->exit) && $data->cmi->exit === 'suspend' && !empty($data->cmi->suspend_data)) {
+        if (!empty($data->cmi->suspend_data)) {
           opigno_scorm_scorm_cmi_set($user->uid, $scorm->id, 'cmi.suspend_data', $data->cmi->suspend_data);
         }
 
@@ -324,11 +335,11 @@ function opigno_scorm_ui_render_player($scorm) {
 
   // Get SCORM API version.
   $metadata = unserialize($scorm->metadata);
-  if (strpos($metadata['schemaversion'], '2004') !== FALSE) {
-    $scorm_version = '2004';
+  if (strpos($metadata['schemaversion'], '1.2') !== FALSE) {
+    $scorm_version = '1.2';
   }
   else {
-    $scorm_version = '1.2';
+    $scorm_version = '2004';
   }
 
   // Get the SCO tree.

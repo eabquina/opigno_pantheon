@@ -290,16 +290,13 @@ class OpignoTincanQuestionTypeQuestion extends QuizQuestion {
 
     // Get the file and construct his URI.
     $file = file_load($this->nodeProperties['fid']);
-
     $filename = $this->getPackageName($file);
-
-    $uri = self::PATH_PUBLIC_EXTRACTED_PACKAGE_FOLDER . $filename . '/' . $launch_file;
-    $uri = str_replace('public://', $base_path . 'sites/default/files/', $uri);
+    $url = file_create_url(self::PATH_PUBLIC_EXTRACTED_PACKAGE_FOLDER . $filename);
 
     $markup .= '
       <iframe
         style="width: 100%; min-height: 800px; border: 0;"
-        src="' . $uri . '">
+        src="' . $url .'/'. $launch_file . '">
       </iframe>';
 
     // Construct the form.

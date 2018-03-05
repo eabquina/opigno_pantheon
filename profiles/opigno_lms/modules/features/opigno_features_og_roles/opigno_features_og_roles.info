@@ -171,9 +171,9 @@ features[og_features_role][] = node:course:teacher
 features_exclude[og_features_role][node:class:class manager] = node:class:class manager
 features_exclude[og_features_role][node:class:class coach] = node:class:class coach
 
-; Information added by Drupal.org packaging script on 2017-09-04
-version = "7.x-1.27"
+; Information added by Drupal.org packaging script on 2018-02-22
+version = "7.x-1.29"
 core = "7.x"
 project = "opigno_lms"
-datestamp = "1504532795"
+datestamp = "1519315392"
 

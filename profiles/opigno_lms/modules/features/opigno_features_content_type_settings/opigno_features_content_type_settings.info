@@ -247,9 +247,9 @@ features[variable][] = print_pdf_link_pos
 features[variable][] = print_pdf_pdf_tool
 features_exclude[dependencies][ctools] = ctools
 
-; Information added by Drupal.org packaging script on 2017-09-04
-version = "7.x-1.27"
+; Information added by Drupal.org packaging script on 2018-02-22
+version = "7.x-1.29"
 core = "7.x"
 project = "opigno_lms"
-datestamp = "1504532795"
+datestamp = "1519315392"
 

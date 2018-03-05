@@ -84,6 +84,16 @@ function opigno_moxtra_app_api_opigno_get_uri_get_max_users_meetings_organizatio
 }
 
 /**
+ * Get the uri to get the organization info
+ *
+ * @return string
+ */
+function opigno_moxtra_app_api_opigno_get_uri_get_organization_info()
+{
+  return opigno_moxtra_app_api_opigno_get_gateway() .'/organization_info_get.json';
+}
+
+/**
  * Get the uri to use to create some users
  *
  * @return string
@@ -277,6 +287,30 @@ function opigno_moxtra_app_api_opigno_get_max_users_meetings_organization()
 
 
   $uri = opigno_moxtra_app_api_opigno_get_uri_get_max_users_meetings_organization();
+
+  $data = array(
+    'org_id' => $org_id
+  );
+
+  $response = opigno_moxtra_app_api_post_json($uri, json_encode($data), 'application/json');
+
+  if ($response->http_code != 200 || isset($response->error_code))
+    return opigno_moxtra_app_api_opigno_error($response->error_code, $response);
+
+  return $response;
+}
+
+/**
+ * Get organization info
+ */
+function opigno_moxtra_app_api_opigno_get_organization_info()
+{
+  $org_id = variable_get('opigno_moxtra_app_org_id', '');
+  if ($org_id == '')
+    return opigno_moxtra_app_api_opigno_error(OpignoMoxtraAppErrorsCodes::$organization_not_created);
+
+
+  $uri = opigno_moxtra_app_api_opigno_get_uri_get_organization_info();
 
   $data = array(
     'org_id' => $org_id

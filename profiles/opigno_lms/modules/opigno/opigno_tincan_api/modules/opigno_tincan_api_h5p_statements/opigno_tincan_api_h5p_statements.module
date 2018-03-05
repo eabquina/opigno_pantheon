@@ -32,7 +32,10 @@ function opigno_tincan_api_h5p_statements_menu() {
  */
 function opigno_tincan_api_h5p_statements_page() {
   if (isset($_POST['token']) && drupal_get_token() == $_POST['token'] && isset($_POST['statement'])) {
-
+    if (!_opigno_tincan_api_tincanphp_is_installed()) {
+      drupal_exit();
+      return;
+    }
     global $base_url;
 
     $data = json_decode($_POST['statement'], TRUE);

@@ -32,7 +32,9 @@ foreach($collaborative_workspaces_ids as $foreach_collaborative_workspace_id) {
         tagid4iframe: 'collaborative_workspace_container',
         iframewidth: '100%',
         autostart_meet: true,
-        video: true
+        video: true,
+        invite_members: true,
+        produce_feeds: true
       });
       $('div#title-wrapper').find('h1').html(collabWorkspaceTitle);
     }

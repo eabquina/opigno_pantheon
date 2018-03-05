@@ -24,6 +24,11 @@
           window.API_1484_11 = new OpignoScorm2004API(settings.scorm_data || {});
           scormAPIobject = window.API_1484_11;
         }
+
+        // Register scos suspend data.
+        if (settings.opignoScormUIPlayer && settings.opignoScormUIPlayer.cmiSuspendItems) {
+          window.API_1484_11.registerSuspendItems(settings.opignoScormUIPlayer.cmiSuspendItems);
+        }
       }
 
       // Register CMI paths.
@@ -36,11 +41,6 @@
         for (var item in settings.opignoScormUIPlayer.cmiData) {
           scormAPIobject.registerCMIData(item, settings.opignoScormUIPlayer.cmiData[item]);
         }
-      }
-
-      // Register scos suspend data.
-      if (settings.opignoScormUIPlayer && settings.opignoScormUIPlayer.cmiSuspendItems) {
-        window.API_1484_11.registerSuspendItems(settings.opignoScormUIPlayer.cmiSuspendItems);
       }
 
       // Get all SCORM players in our context.
@@ -69,7 +69,7 @@
             eventName = 'commit12';
           }
           // Listen on commit event, and send the data to the server.
-          scormAPIobject.bind('commit', function(value, data, scoId) {
+          scormAPIobject.bind(eventName, function(value, data, scoId) {
             $.ajax({
               url: Drupal.settings.basePath + '?q=opigno-scorm/ui/scorm/' + $element.data('scorm-id') + '/' + scoId + '/ajax/commit',
               data: { data: JSON.stringify(data) },

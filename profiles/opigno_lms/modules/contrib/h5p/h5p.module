@@ -855,7 +855,7 @@ function h5p_get_content($node) {
     'library' => $node->main_library,
     'embedType' => 'div',
     'filtered' => $node->filtered,
-    'url' => url('node/' . $node->nid, array('absolute' => TRUE)),
+    'url' => url('node/' . $node->nid, array('absolute' => TRUE, 'alias' => TRUE)),
     'displayOptions' => $core->getDisplayOptionsForView($node->disable, $node->nid),
     'slug' => $node->h5p_slug
   );

@@ -40,6 +40,7 @@ function opigno_scorm_quiz_opigno_scorm_ui_register_cmi_paths($scorm_version) {
         'cmi.core.score.raw' => array(),
         'cmi.core.score.max' => array(),
         'cmi.core.score.min' => array(),
+        'cmi.suspend_data' => array(),
         'cmi.core.lesson_status' => array(),
         'cmi.objectives' => array(),
         'cmi.objectives._count' => array('readOnly' => 1),
@@ -89,6 +90,7 @@ function opigno_scorm_quiz_opigno_scorm_ui_register_cmi_data($scorm, $scos, $sco
         'cmi.core.score.min' => opigno_scorm_ui_scorm_cmi_get($user->uid, $scorm->id, 'cmi.core.score.min', ''),
         'cmi.core.score.max' => opigno_scorm_ui_scorm_cmi_get($user->uid, $scorm->id, 'cmi.core.score.max', ''),
         'cmi.core.lesson_status' => opigno_scorm_ui_scorm_cmi_get($user->uid, $scorm->id, 'cmi.core.lesson_status', ''),
+        'cmi.suspend_data' => opigno_scorm_ui_scorm_cmi_get($user->uid, $scorm->id, 'cmi.suspend_data', ''),
         'cmi.objectives' => array(),
       );
       break;
