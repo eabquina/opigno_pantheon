@@ -1,3 +1,3 @@
 api = 2
-core = 7.57
+core = 7.59
 projects[drupal][type] = core

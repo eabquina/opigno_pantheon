@@ -18,7 +18,7 @@ define('OPIGNO_LMS_STUDENT_MANAGER_ROLE',     'student manager');
 define('OPIGNO_LMS_ADMIN_ROLE',               'administrator');
 define('OPIGNO_LMS_FORUM_ADMINISTRATOR_ROLE', 'forum administrator');
 
-define('OPIGNO_LMS_VERSION', '1.29.0');
+define('OPIGNO_LMS_VERSION', '1.31.0');
 
 /**
  * Implements hook_init().cd .drush
