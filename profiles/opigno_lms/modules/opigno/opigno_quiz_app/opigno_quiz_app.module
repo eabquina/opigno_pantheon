@@ -1253,7 +1253,7 @@ function theme_opigno_quiz_app_user_course_results($vars) {
   $result = '<div class="d-inline-block v-align-top mr-4"><img src="'. url(drupal_get_path('module', 'opigno_quiz_app') . '/img/' . $img_name) .'" alt="" /></div>';
   $result .= '<div class="d-inline-block v-align-top"><div><strong>'. $status_text .'</strong></div>';
   // $result .= '<div>' . t('Pass rate:') . ' ' . '%</div>';
-  $result .= '<div>' . t('Progress:') . ' ' . (isset($vars['course_results']['total_score']) ? $vars['course_results']['total_score'] : '-') . '%</div></div>';
+  $result .= '<div>' . t('Score:') . ' ' . (isset($vars['course_results']['total_score']) ? $vars['course_results']['total_score'] : '-') . '%</div></div>';
 
   $rows = array();
   $rows[] = array(

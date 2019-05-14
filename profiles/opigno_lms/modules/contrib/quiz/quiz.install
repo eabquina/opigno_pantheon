@@ -371,6 +371,7 @@ function quiz_schema() {
     'indexes' => array(
       'user_results' => array('uid', 'vid', 'nid'),
       'vid' => array('vid'),
+      'nid' => array('nid'),
     ),
   );
 
@@ -820,6 +821,13 @@ function quiz_update_7411(&$sandbox) {
           . 'from <a href="http://h5p.org/content-types-and-applications" target="_blank">H5P.org</a> to get started.');
   drupal_set_message($message);
   return $message;
+}
+
+/**
+ * Adding nid index to the quiz_node_results table
+ */
+function quiz_update_7412(&$sandbox) {
+  db_add_index('quiz_node_results', 'nid', array('nid'));
 }
 
 

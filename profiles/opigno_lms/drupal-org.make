@@ -1,12 +1,11 @@
 api = 2
-core = 7.59
-
+core = 7.67
 
 ; Opigno modules ===============================================================
 
 projects[opigno][type]               = module
 projects[opigno][subdir]             = "opigno"
-projects[opigno][version]            = 1.19
+projects[opigno][version]            = 1.21
 
 projects[opigno_calendar_app][type]    = module
 projects[opigno_calendar_app][subdir]  = "opigno"
@@ -42,7 +41,7 @@ projects[opigno_class_app][version]            = 1.6
 
 projects[opigno_quiz_app][type]               = module
 projects[opigno_quiz_app][subdir]             = "opigno"
-projects[opigno_quiz_app][version]            = 1.17
+projects[opigno_quiz_app][version]            = 1.18
 
 projects[opigno_wt_app][type]               = module
 projects[opigno_wt_app][subdir]             = "opigno"
@@ -54,15 +53,15 @@ projects[opigno_course_categories_app][version]            = 1.2
 
 projects[tft][type]        = module
 projects[tft][subdir]      = "opigno"
-projects[tft][version]     = 1.0
+projects[tft][version]     = 1.1
 
 projects[opigno_statistics_app][type]               = module
 projects[opigno_statistics_app][subdir]             = "opigno"
-projects[opigno_statistics_app][version]            = 1.4
+projects[opigno_statistics_app][version]            = 1.5
 
 projects[opigno_moxtra_app][type]               = module
 projects[opigno_moxtra_app][subdir]             = "opigno"
-projects[opigno_moxtra_app][version]            = 1.4
+projects[opigno_moxtra_app][version]            = 1.5
 
 projects[opigno_tincan_api][type]     = module
 projects[opigno_tincan_api][subdir]   = "opigno"
@@ -79,12 +78,12 @@ projects[og_quiz][version]            = 1.5
 ; Opigno themes ================================================================
 
 projects[platon][type]               = theme
-projects[platon][version]            = 3.19
+projects[platon][version]            = 3.20
 
 ; Third-party modules that need to be patched ==================================
 
 ; Quiz
-projects[quiz][version]        = 4.0-rc9
+projects[quiz][version]        = 4.0-rc11
 projects[quiz][subdir]         = "contrib"
 projects[quiz][patch][937430]  = "http://drupal.org/files/add_plural_quiz_name-937430-8.patch"
 projects[quiz][patch][2101063] = "http://drupal.org/files/issues/quiz_modify-quiz-to-lesson-in-ui-strings-2101063_4.patch"
@@ -97,6 +96,8 @@ projects[quiz][patch][2394843] = "http://drupal.org/files/issues/quiz_poll-confl
 projects[quiz][patch][2401779] = "http://drupal.org/files/issues/quiz-browser_per_quiz_type-2401779-2.patch"
 projects[quiz][patch][2582987] = "http://drupal.org/files/issues/quiz_ddlines_backgroundimage-2582987-1.patch"
 projects[quiz][patch][2895276] = "http://drupal.org/files/issues/quiz_ajax_questions_browser-2895276-2.patch"
+projects[quiz][patch][3003123] = "http://drupal.org/files/issues/2018-10-04/quiz-php7_timezone_warnings-3003123-4-D74.patch"
+projects[quiz][patch][2915509] = "http://drupal.org/files/issues/2018-10-04/php-matching-php71-2915509-12-d74.patch"
 
 ; OG
 projects[og][version]        = 2.9
@@ -119,7 +120,7 @@ projects[og_forum_D7][patch][2206711] = "http://drupal.org/files/issues/og_forum
 
 ; Rules
 projects[rules][subdir]         = "contrib"
-projects[rules][version]        = 2.10
+projects[rules][version]        = 2.11
 projects[rules][patch][1966426] = "http://drupal.org/files/system.rules_.inc_.patch"
 
 ; Apps
@@ -176,7 +177,8 @@ projects[calendar][subdir]  = "contrib"
 projects[calendar][version] = 3.5
 
 projects[h5p][subdir] = "contrib"
-projects[h5p][version] = 1.34
+projects[h5p][version] = 1.39
+projects[h5p][patch][3024279] = "http://drupal.org/files/issues/2019-02-26/opigno_h5p_title_metatag-3024279-4.patch"
 
 projects[admin_menu][subdir] = "contrib"
 projects[admin_menu][version] = 3.0-rc5
@@ -185,16 +187,14 @@ projects[ctools][subdir] = "contrib"
 projects[ctools][version] = 1.14
 
 projects[views][subdir] = "contrib"
-projects[views][version] = 3.18
-
-projects[views_php][subdir] = "contrib"
-projects[views_php][version] = 1.0-alpha3
+projects[views][version] = 3.21
 
 projects[defaultconfig][subdir] = "contrib"
 projects[defaultconfig][version] = 1.0-alpha11
+projects[defaultconfig][patch][1900574] = "http://drupal.org/files/issues/1900574.defaultconfig.undefinedindex_20.patch"
 
 projects[module_filter][subdir]  = "contrib"
-projects[module_filter][version] = 2.1
+projects[module_filter][version] = 2.2
 
 projects[entity][subdir]  = "contrib"
 projects[entity][version] = 1.9
@@ -219,15 +219,16 @@ projects[variable][version] = 2.5
 
 projects[rules_conditional][subdir]  = "contrib"
 projects[rules_conditional][version] = 1.0-beta2
+projects[rules_conditional][patch][3024279] = "http://drupal.org/files/issues/2018-04-08/php7.2_incompatibility-2959426-4.patch"
 
 projects[features][subdir]  = "contrib"
-projects[features][version] = 2.10
+projects[features][version] = 2.11
 
 projects[og_massadd][subdir]  = "contrib"
 projects[og_massadd][version] = 1.0-beta2
 
 projects[wysiwyg][subdir]  = "contrib"
-projects[wysiwyg][version] = 2.4
+projects[wysiwyg][version] = 2.5
 
 projects[wysiwyg_filter][subdir]  = "contrib"
 projects[wysiwyg_filter][version] = 1.6-rc9
@@ -245,7 +246,7 @@ projects[menu_attributes][subdir]  = "contrib"
 projects[menu_attributes][version] = 1.0
 
 projects[print][subdir]  = "contrib"
-projects[print][version] = 2.0
+projects[print][version] = 2.1
 
 projects[advanced_forum][subdir]  = "contrib"
 projects[advanced_forum][version] = 2.7-rc0
@@ -295,7 +296,7 @@ projects[homebox][version] = 2.0
 ; Third-patry libraries ========================================================
 
 libraries[CKEditor][download][type] = get
-libraries[CKEditor][download][url]  = "http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.6.1/ckeditor_4.6.1_full.zip"
+libraries[CKEditor][download][url]  = "http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.9.2/ckeditor_4.9.2_full.zip"
 libraries[CKEditor][destination]    = "libraries"
 libraries[CKEditor][directory_name] = "ckeditor"
 

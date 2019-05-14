@@ -18,7 +18,7 @@ define('OPIGNO_LMS_STUDENT_MANAGER_ROLE',     'student manager');
 define('OPIGNO_LMS_ADMIN_ROLE',               'administrator');
 define('OPIGNO_LMS_FORUM_ADMINISTRATOR_ROLE', 'forum administrator');
 
-define('OPIGNO_LMS_VERSION', '1.31.0');
+define('OPIGNO_LMS_VERSION', '1.40.0');
 
 /**
  * Implements hook_init().cd .drush
@@ -319,12 +319,6 @@ function opigno_lms_form_install_configure_form_alter_submit($form, $form_state)
  * if they have not been updated manually.
  */
 function opigno_lms_update_status_alter(&$projects) {
-  $bad_statuses = array(
-    UPDATE_NOT_SECURE,
-    UPDATE_REVOKED,
-    UPDATE_NOT_SUPPORTED,
-  );
-
   $make_filepath = drupal_get_path('profile', 'opigno_lms') . '/drupal-org.make';
   if (!file_exists($make_filepath)) {
     return;
@@ -343,10 +337,6 @@ function opigno_lms_update_status_alter(&$projects) {
     }
     // Hide Opigno LMS projects, they have no update status of their own.
     if (strpos($project_name, 'opigno_features_') !== FALSE) {
-      unset($projects[$project_name]);
-    }
-    // Hide bad releases (insecure, revoked, unsupported).
-    elseif (isset($project_info['status']) && in_array($project_info['status'], $bad_statuses)) {
       unset($projects[$project_name]);
     }
     // Hide projects shipped with Opigno LMS if they haven't been manually

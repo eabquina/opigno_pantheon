@@ -22,6 +22,6 @@ drupal_add_html_head(
     client_id: '<?php echo variable_get('opigno_moxtra_app_client_id'); ?>',
     org_id: '<?php echo variable_get('opigno_moxtra_app_org_id'); ?>',
     access_token: '<?php echo opigno_moxtra_app_api_opigno_get_access_token() ?>',
-    sdk_version: '3'
+    sdk_version: '5'
   });
 </script>

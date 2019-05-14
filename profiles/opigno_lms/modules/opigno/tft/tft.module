@@ -21,6 +21,18 @@ function _tft_download_the_file($nid = NULL) {
   }
   elseif (node_access('view', $node)) {
     $file = file_load($node->tft_file[LANGUAGE_NONE][0]['fid']);
+
+    // If using private file system check hook_file_download
+    $schema = file_uri_scheme($file->uri);
+    if ($schema == 'private') {
+      $headers = module_invoke_all('file_download', $file->uri);
+      // If there is no module granting access or one denying access do not grant access
+      if (empty($headers) || in_array(-1, $headers)) {
+        drupal_access_denied();
+        drupal_exit();
+      }
+    }
+
     $http_headers = array(
       'Content-Type' => $file->filemime,
       'Content-Disposition' => 'attachment; filename="' . $file->filename . '"',

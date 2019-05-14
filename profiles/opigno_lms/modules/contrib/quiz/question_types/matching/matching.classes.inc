@@ -229,8 +229,9 @@ class MatchingQuestion extends QuizQuestion {
       $form['subquestions'][$match['match_id']]['#question'] = check_markup($match['question']);
       $form['subquestions'][$match['match_id']]['tries[' . $match['match_id'] . ']'] = array(
         '#type' => 'select',
-        '#options' => $this->customShuffle($select_option),
+        '#options' => array('def' => ''),
       );
+      $form['subquestions'][$match['match_id']]['tries[' . $match['match_id'] . ']']['#options'] += $this->customShuffle($select_option);
       if (isset($rid)) {
         // If this question already has been answered
         $form['subquestions'][$match['match_id']]['tries[' . $match['match_id'] . ']']['#default_value'] = $responses[$match['match_id']];
@@ -265,7 +266,6 @@ class MatchingQuestion extends QuizQuestion {
    */
   private function customShuffle(array $array = array()) {
     $new_array = array();
-    $new_array['def'] = '';
     while (count($array)) {
       $element = array_rand($array);
       $new_array[$element] = $array[$element];

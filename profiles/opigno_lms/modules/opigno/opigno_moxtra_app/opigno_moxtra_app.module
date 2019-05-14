@@ -106,7 +106,7 @@ function opigno_moxtra_app_user_update(&$edit, $account, $category) {
 
     if ($edit['original']->status != $account->status) {
       if ($account->status != 1) {
-        $response = opigno_moxtra_app_api_opigno_disable_user($account->uid);
+        $response = opigno_moxtra_app_api_opigno_delete_user($account->uid);
 
         if (isset($response->opigno_error_message)) {
           drupal_set_message($response->opigno_error_message, 'error');
@@ -114,9 +114,19 @@ function opigno_moxtra_app_user_update(&$edit, $account, $category) {
         }
       }
       else {
-        $response = opigno_moxtra_app_api_opigno_enable_user(
-          array('uid' => $account->uid, 'name' => $account->name, 'timezone' => $account->timezone)
+        $user = array(
+          'uid' => $account->uid,
+          'name' => $account->name,
+          'timezone' => $account->timezone,
         );
+
+        $response = opigno_moxtra_app_api_opigno_create_users(array($user));
+
+        if (isset($response->opigno_error_message)) {
+          drupal_set_message($response->opigno_error_message, 'error');
+        }
+
+        $response = opigno_moxtra_app_api_opigno_enable_user($user);
 
         if (isset($response->opigno_error_message)) {
           drupal_set_message($response->opigno_error_message, 'error');
@@ -136,7 +146,7 @@ function opigno_moxtra_app_user_update(&$edit, $account, $category) {
 function opigno_moxtra_app_user_delete($account) {
   $organization = variable_get('opigno_moxtra_app_org_id', NULL);
   if ((!empty($organization)) && (opigno_moxtra_app_organization_is_active())) {
-    $response = opigno_moxtra_app_api_opigno_disable_user($account->uid);
+    $response = opigno_moxtra_app_api_opigno_delete_user($account->uid);
 
     if (isset($response->opigno_error_message)) {
       drupal_set_message($response->opigno_error_message);

@@ -124,6 +124,16 @@ function opigno_moxtra_app_api_opigno_get_uri_disable_user()
 }
 
 /**
+ * Get the uri to use to delete a user.
+ *
+ * @return string
+ */
+function opigno_moxtra_app_api_opigno_get_uri_delete_user()
+{
+  return opigno_moxtra_app_api_opigno_get_gateway() .'/user_delete.json';
+}
+
+/**
  * Get the uri to use to enable a user
  *
  * @return string
@@ -399,6 +409,33 @@ function opigno_moxtra_app_api_opigno_disable_user($user_id)
 
 
   $uri = opigno_moxtra_app_api_opigno_get_uri_disable_user();
+
+  $data = array(
+    'org_id' => $org_id,
+    'user_id' => $user_id
+  );
+
+  $response = opigno_moxtra_app_api_post_json($uri, json_encode($data), 'application/json');
+  if ($response->http_code != 200 || isset($response->error_code))
+    return opigno_moxtra_app_api_opigno_error($response->error_code, $response);
+
+  return $response;
+}
+
+/**
+ * Delete a user.
+ *
+ * @param $user_id
+ * @return StdClass
+ */
+function opigno_moxtra_app_api_opigno_delete_user($user_id)
+{
+  $org_id = variable_get('opigno_moxtra_app_org_id', '');
+  if ($org_id == '')
+    return opigno_moxtra_app_api_opigno_error(OpignoMoxtraAppErrorsCodes::$organization_not_created);
+
+
+  $uri = opigno_moxtra_app_api_opigno_get_uri_delete_user();
 
   $data = array(
     'org_id' => $org_id,

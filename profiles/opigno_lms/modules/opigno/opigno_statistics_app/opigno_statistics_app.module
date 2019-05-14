@@ -632,7 +632,7 @@ function _opigno_statistics_app_get_courses_classes_block() {
         <dl class="admin-list">
           <dt>'.t('Select your course or class').'</dt>
           <dd><select id="course_stats">
-            <option value="" selected="selected">-None-</option>'
+            <option value="" selected="selected">-'.t('None').'-</option>'
             .$options_html.
           '</select></dd>
         </dl>',

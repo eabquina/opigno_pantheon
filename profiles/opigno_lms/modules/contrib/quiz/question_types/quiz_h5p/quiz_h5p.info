@@ -20,9 +20,8 @@ files[] = report/type-processors/choice-processor.class.php
 files[] = report/type-processors/long-choice-processor.class.php
 files[] = report/type-processors/matching-processor.class.php
 
-; Information added by Drupal.org packaging script on 2018-02-06
-version = "7.x-4.0-rc9"
+; Information added by Drupal.org packaging script on 2019-03-14
+version = "7.x-4.0-rc11"
 core = "7.x"
 project = "quiz"
-datestamp = "1517908099"
-
+datestamp = "1552552392"

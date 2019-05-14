@@ -687,7 +687,7 @@ function opigno_lms_update_7107(&$sandbox) {
       user_role_grant_permissions($rid, array('tft add child terms'));
     }
   }
-  module_enable(array('views_php','r4032login','better_exposed_filters'),TRUE);
+  module_enable(array('r4032login','better_exposed_filters'),TRUE);
 }
 
 /**

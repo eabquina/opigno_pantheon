@@ -83,17 +83,65 @@ function _quiz_mktime($hour, $minute, $second, $month, $day, $year, $offset = NU
 function _quiz_date($format, $timestamp, $offset = NULL) {
   global $user;
 
+  $timezones_map = &drupal_static(__FUNCTION__);
+  if (!isset($timezones_map)) {
+    $timezones_map = _quiz_get_timezones_array();
+  }
+
   if (isset($offset)) {
     $timestamp += $offset;
   }
-  elseif (variable_get('configurable_timezones', 1) && $user->uid && strlen($user->timezone)) {
-    $timestamp += $user->timezone;
+  elseif (variable_get('configurable_timezones', 1) && $user->uid && isset($user->timezone)) {
+    $timezone = _quiz_convert_timezone($timezones_map, $user->timezone);
+    if ($timezone) {
+      $timestamp += $timezone;
+    }
   }
   else {
-    $timestamp += variable_get('date_default_timezone', 0);
+    $timezone = _quiz_convert_timezone($timezones_map, variable_get('date_default_timezone', 0));
+    if ($timezone) {
+      $timestamp += $timezone;
+    }
   }
 
   // make sure we apply the site first day of the week setting for dow requests
   $result = gmdate($format, $timestamp);
   return $result;
+}
+
+/**
+ * Returns timezone mapping D6 to D7.
+ */
+function _quiz_get_timezones_array() {
+  $map = [];
+  foreach (timezone_identifiers_list() as $zone) {
+    if ($timezone = timezone_open($zone)) {
+      if ($datetime = date_create("now", $timezone)) {
+        if (($offset = $timezone->getOffset($datetime)) !== FALSE && !isset($map[$offset])) {
+          $map[$offset][] = $zone;
+        }
+      }
+    }
+  }
+
+  return $map;
+}
+
+/**
+ * Returns converted timezone integer value.
+ */
+function _quiz_convert_timezone($map, $time_zone) {
+  if (!empty($map) && $time_zone) {
+    foreach ($map as $key => $timezones) {
+      if ($timezones) {
+        foreach ($timezones as $timezone) {
+          if ($timezone == $time_zone) {
+            return $key;
+          }
+        }
+      }
+    }
+  }
+
+  return FALSE;
 }

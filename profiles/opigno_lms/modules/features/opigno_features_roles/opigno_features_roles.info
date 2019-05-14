@@ -280,8 +280,8 @@ features[user_role][] = administrator
 features[user_role][] = forum administrator
 features[user_role][] = student manager
 
-; Information added by Drupal.org packaging script on 2018-04-26
-version = "7.x-1.31"
+; Information added by Drupal.org packaging script on 2019-05-13
+version = "7.x-1.40"
 core = "7.x"
 project = "opigno_lms"
-datestamp = "1524732799"
+datestamp = "1557732506"
