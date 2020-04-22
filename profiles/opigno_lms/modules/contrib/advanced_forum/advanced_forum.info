@@ -18,9 +18,8 @@ files[] = includes/views/advanced_forum_plugin_style_forum_topic_list.inc
 ; Tests
 files[] = tests/af.test
 
-; Information added by Drupal.org packaging script on 2016-04-27
-version = "7.x-2.7-rc0"
+; Information added by Drupal.org packaging script on 2019-06-26
+version = "7.x-2.8"
 core = "7.x"
 project = "advanced_forum"
-datestamp = "1461748880"
-
+datestamp = "1561547893"

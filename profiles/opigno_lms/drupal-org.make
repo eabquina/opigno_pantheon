@@ -1,5 +1,5 @@
 api = 2
-core = 7.67
+core = 7.69
 
 ; Opigno modules ===============================================================
 
@@ -162,7 +162,7 @@ projects[quizfileupload][subdir]   = "contrib"
 projects[quizfileupload][version]  = 4.1
 
 projects[l10n_update][subdir]  = "contrib"
-projects[l10n_update][version] = 2.2
+projects[l10n_update][version] = 2.3
 
 projects[date][subdir]  = "contrib"
 projects[date][version] = 2.10
@@ -228,7 +228,8 @@ projects[og_massadd][subdir]  = "contrib"
 projects[og_massadd][version] = 1.0-beta2
 
 projects[wysiwyg][subdir]  = "contrib"
-projects[wysiwyg][version] = 2.5
+projects[wysiwyg][version] = 2.6
+projects[wysiwyg][patch][3024279] = "http://drupal.org/files/issues/2020-03-17/3094882-5.patch"
 
 projects[wysiwyg_filter][subdir]  = "contrib"
 projects[wysiwyg_filter][version] = 1.6-rc9
@@ -249,7 +250,7 @@ projects[print][subdir]  = "contrib"
 projects[print][version] = 2.1
 
 projects[advanced_forum][subdir]  = "contrib"
-projects[advanced_forum][version] = 2.7-rc0
+projects[advanced_forum][version] = 2.8
 
 projects[date_popup_authored][subdir]  = "contrib"
 projects[date_popup_authored][version] = 1.2
@@ -296,7 +297,7 @@ projects[homebox][version] = 2.0
 ; Third-patry libraries ========================================================
 
 libraries[CKEditor][download][type] = get
-libraries[CKEditor][download][url]  = "http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.9.2/ckeditor_4.9.2_full.zip"
+libraries[CKEditor][download][url]  = "http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.14.0/ckeditor_4.14.0_full.zip"
 libraries[CKEditor][destination]    = "libraries"
 libraries[CKEditor][directory_name] = "ckeditor"
 

@@ -147,8 +147,8 @@ features_exclude[taxonomy][course_categories] = course_categories
 features_exclude[taxonomy][forums] = forums
 features_exclude[taxonomy][tft_tree] = tft_tree
 
-; Information added by Drupal.org packaging script on 2019-05-13
-version = "7.x-1.40"
+; Information added by Drupal.org packaging script on 2020-03-19
+version = "7.x-1.44"
 core = "7.x"
 project = "opigno_lms"
-datestamp = "1557732506"
+datestamp = "1584623785"

@@ -1,5 +1,5 @@
 api = 2
-core = 7.67
+core = 7.69
 
 ; Opigno modules ===============================================================
 
@@ -249,7 +249,7 @@ projects[print][subdir]  = "contrib"
 projects[print][version] = 2.1
 
 projects[advanced_forum][subdir]  = "contrib"
-projects[advanced_forum][version] = 2.7-rc0
+projects[advanced_forum][version] = 2.8
 
 projects[date_popup_authored][subdir]  = "contrib"
 projects[date_popup_authored][version] = 1.2
